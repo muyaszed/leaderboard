@@ -5,14 +5,8 @@
 Inside the application folder create seperate Developmment and Output folder
 
 MyAppFolder
-
-|
-
-|____devFolder
-
-|
-
-|____outputFolder
+	devFolder
+	outputFolder
 
 
 2.
