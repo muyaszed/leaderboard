@@ -9,7 +9,13 @@ var config = {
   output: {
     path: OUTPUT,
     filename: "app.js"
-  }
+  },
+	module: {
+    loaders: [{
+        include: DEV,
+        loader: "babel",
+    }]
+  }
 };
  
 module.exports = config;

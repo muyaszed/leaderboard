@@ -1,11 +1,16 @@
-var React = require('React');
-var ReactDOM = require('ReactDOM');
+var React = require('react');
+var ReactDOM = require('react-dom');
 
-var MyComponent = React.createClass() {
+var MyComponent = React.createClass({
 	render: function() {
-		<h1>Hello World</h1>
+		return (
+			<h1>Hello World</h1>
+		);
+		
 	}
-};
+});
+	
+
 
 
 ReactDOM.render(
