@@ -13,27 +13,27 @@
 2. Create and prepare your index.html in the root of the application folder
 
  Make sure to link to the correct javascript file that will be created in the outpufolder later
-```html
+ ```html
 	<script src="outputFolder/app.js"></script>
-```
+ ```
 3. Install node (skip this if node is already installed)
 
 4. Initialized npm inside the application folder and setup the package.json file
 
 5. Install react dependencies.
-```
+ ```
 	npm install react react-dom --save
-```
+ ```
 
 6. Create your jsx file inside the devFolder
 
 7. Install and setup webpack
-```
+ ```
 	npm install webpack --save  
-```
+ ```
 
  create webpack.config.js
-```
+ ```
 	var webpack = require("webpack");
 	var path = require("path");
 	 
@@ -47,32 +47,32 @@
 	    filename: "app.js"
 	  }
 	};
-```
+ ```
 
 8. Install and setup babel
-```
+ ```
 	npm install babel-core babel-loader babel-preset-es2015 babel-preset-react --save
-```
+ ```
 
  added to package.jsom
-```
+ ```
 	"babel": {
 	    "presets": [
 	      "es2015",
 	      "react"
 	    ]
 	  }
-```
+ ```
  added to webpack.config.js
-```
+ ```
 	module: {
 	    loaders: [{
 	        include: DEV,
 	        loader: "babel",
 	    }]
 	  }
-```
+ ```
 9. Compile to test app
-```
+ ```
 	./node_modules/.bin/webpack
-```
+ ```
