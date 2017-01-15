@@ -15,17 +15,24 @@ var LeaderBoard = React.createClass({
   },
   componentDidMount: function() {
     var th = this;
-    
-    Axios.get('https://fcctop100.herokuapp.com/api/fccusers/top/recent')
-      .then(function (response) {
+
+    function getLast30() {
+      return Axios.get('https://fcctop100.herokuapp.com/api/fccusers/top/recent');
+    }
+
+    function getAllTime() {
+      return Axios.get('https://fcctop100.herokuapp.com/api/fccusers/top/alltime');
+    }
+
+    Axios.all([getLast30(), getAllTime()])
+      .then(Axios.spread(function (last30, all) {
         th.setState({
-          thirtyDaysUsers: response.data
+          thirtyDaysUsers: last30.data,
+          allTimeUsers: all.data
         });
-        console.log(th.state.thirtyDaysUsers[0].username);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+      }));
+    
+    
 
    
   },
