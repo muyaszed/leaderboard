@@ -15,6 +15,7 @@ var LeaderBoard = React.createClass({
   },
   componentDidMount: function() {
     var th = this;
+    
     Axios.get('https://fcctop100.herokuapp.com/api/fccusers/top/recent')
       .then(function (response) {
         th.setState({
@@ -30,25 +31,34 @@ var LeaderBoard = React.createClass({
   },
   
   render: function() {
-      
+    
     return (
       <table>
         <thead>
           <tr>
-            <th width="200">Table Header</th>
-            <th>Table Header</th>
-            <th width="150">Table Header</th>
-            <th width="150">Table Header</th>
+            <th width="300">Username</th>
+            <th>Points past 30 days</th>
+            <th>All time points</th>
+            
           </tr>
         </thead>
         <tbody>
-          {}
-          <tr>
-            <td>Content Goes Here</td>
-            <td>This is longer content Donec id elit non mi porta gravida at eget metus.</td>
-            <td>Content Goes Here</td>
-            <td>Content Goes Here</td>
-          </tr>
+
+          {this.state.thirtyDaysUsers.map(function(user, index) {
+            
+            return (
+                <tr key={index}>
+                  <td>{user.username}</td>
+                  <td>{user.recent}</td>
+                  <td>{user.alltime}</td>
+                  
+                </tr>
+
+              );
+            
+
+          })}
+          
           
         </tbody>
 </table>
@@ -57,6 +67,7 @@ var LeaderBoard = React.createClass({
       
   
 });
+
 
 ReactDOM.render(
   <LeaderBoard />,
