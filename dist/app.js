@@ -49,107 +49,31 @@
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(32);
 
-	var LeaderBoard = React.createClass({
-	  displayName: 'LeaderBoard',
+	// var LeaderBoard = React.createClass({
+	//   getInitialState: function() {
+	//     return {
+	//       allTimeUsers: [],
+	//       thirtyDaysUsers: []
+	//     }
 
-	  getInitialState: function getInitialState() {
-	    return {
-	      allTimeUsers: [],
-	      thirtyDaysUsers: []
-	    };
-	  },
-	  componentDidAmount: function componentDidAmount() {
-	    var th = this;
-	    function getAllTimeUsers() {
-	      return axios.get('https://fcctop100.herokuapp.com/api/fccusers/top/alltime');
-	    }
+	//   },
 
-	    function getLast30Users() {
-	      return axios.get('https://fcctop100.herokuapp.com/api/fccusers/top/recent');
-	    }
-	    console.log('hi');
-	    axios.all([getAllTimeUsers(), getLast30Users()]).then(axios.spread(function (all, last) {
 
-	      th.setState({
-	        allTimeUsers: all,
-	        thirtyDaysUsers: last
+	//   render: function() {
 
-	      });
-	    }));
-	  },
+	//     return (
+	//       <h1>My Name is Sarah</h1>
+	//     );
+	//   }
 
-	  render: function render() {
 
-	    return React.createElement(
-	      'div',
-	      null,
-	      React.createElement(
-	        'table',
-	        null,
-	        React.createElement(
-	          'thead',
-	          null,
-	          React.createElement(
-	            'tr',
-	            null,
-	            React.createElement(
-	              'th',
-	              { width: '200' },
-	              'Table Header'
-	            ),
-	            React.createElement(
-	              'th',
-	              null,
-	              'Table Header'
-	            ),
-	            React.createElement(
-	              'th',
-	              { width: '150' },
-	              'Table Header'
-	            ),
-	            React.createElement(
-	              'th',
-	              { width: '150' },
-	              'Table Header'
-	            )
-	          )
-	        ),
-	        React.createElement(
-	          'tbody',
-	          null,
-	          this.state.allTimeUsers.map(function (user) {
-	            return React.createElement(
-	              'tr',
-	              null,
-	              React.createElement(
-	                'td',
-	                null,
-	                user.username
-	              ),
-	              React.createElement(
-	                'td',
-	                null,
-	                'This is longer content Donec id elit non mi porta gravida at eget metus.'
-	              ),
-	              React.createElement(
-	                'td',
-	                null,
-	                'Content Goes Here'
-	              ),
-	              React.createElement(
-	                'td',
-	                null,
-	                'Content Goes Here'
-	              )
-	            );
-	          })
-	        )
-	      )
-	    );
-	  }
-	});
+	// });
 
-	ReactDOM.render(React.createElement(LeaderBoard, null), document.getElementById('app'));
+	ReactDOM.render(React.createElement(
+	  'h1',
+	  null,
+	  ' hi'
+	), document.getElementById('app'));
 
 /***/ },
 /* 1 */

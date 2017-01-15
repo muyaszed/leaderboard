@@ -1,21 +1,28 @@
-var webpack = require("webpack");
-var path = require("path");
- 
-var DEV = path.resolve(__dirname, "dev");
-var OUTPUT = path.resolve(__dirname, "output");
- 
-var config = {
-  entry: DEV + "/index.jsx",
-  output: {
-    path: OUTPUT,
-    filename: "app.js"
-  },
-	module: {
-    loaders: [{
-        include: DEV,
-        loader: "babel",
-    }]
-  }
-};
- 
-module.exports = config;
+
+
+module.exports = {
+  context: __dirname + "/app",
+  entry: {
+  	javascript: "./app.js",
+  	html: "./index.html"
+	
+  },
+  output: {
+    filename: "app.js",
+    path: __dirname + "/dist",
+  },
+
+  module: {
+  loaders: [
+	    {
+	      test: /\.js$/,
+	      exclude: /node_modules/,
+	      loaders: ["react-hot", "babel"],
+	    },
+	    {
+		  test: /\.html$/,
+		  loader: "file?name=[name].[ext]",
+		},
+	  ],
+	},
+}
