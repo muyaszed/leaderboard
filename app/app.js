@@ -9,7 +9,8 @@ var LeaderBoard = React.createClass({
   getInitialState: function() {
     return {
       allTimeUsers: [],
-      thirtyDaysUsers: []
+      thirtyDaysUsers: [],
+      currentList: []
     }
   
   },
@@ -28,7 +29,8 @@ var LeaderBoard = React.createClass({
       .then(Axios.spread(function (last30, all) {
         th.setState({
           thirtyDaysUsers: last30.data,
-          allTimeUsers: all.data
+          allTimeUsers: all.data,
+          currentList: last30.data
         });
       }));
     
@@ -36,22 +38,35 @@ var LeaderBoard = React.createClass({
 
    
   },
+
+  handleLatest: function() {
+    this.setState({
+      currentList: this.state.thirtyDaysUsers
+    });
+  },
+
+  handleAll: function() {
+    this.setState({
+      currentList: this.state.allTimeUsers
+    });
+  },
   
   render: function() {
+    
     
     return (
       <table>
         <thead>
           <tr>
             <th width="300">Username</th>
-            <th>Points past 30 days</th>
-            <th>All time points</th>
+            <th><a href="#" onClick={this.handleLatest}>Points past 30 days </a></th>
+            <th><a href="#" onClick={this.handleAll}>All time points</a></th>
             
           </tr>
         </thead>
         <tbody>
 
-          {this.state.thirtyDaysUsers.map(function(user, index) {
+          {this.state.currentList.map(function(user, index) {
             
             return (
                 <tr key={index}>
