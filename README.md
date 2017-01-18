@@ -29,24 +29,24 @@
 
 7. Install and setup webpack
  ```
-	npm install webpack --save  
+	npm install webpack --save-dev
  ```
 
  create webpack.config.js
  ```
-	var webpack = require("webpack");
-	var path = require("path");
-	 
-	var DEV = path.resolve(__dirname, "dev");
-	var OUTPUT = path.resolve(__dirname, "output");
-	 
-	var config = {
-	  entry: DEV + "/index.jsx",
+	module.exports = {
+	  context: __dirname + "/app",
+	  entry: {
+	  	javascript: "./app.js"
+		
+	  },
 	  output: {
-	    path: OUTPUT,
-	    filename: "app.js"
-	  }
-	};
+	    filename: "app.js",
+	    path: __dirname + "/dist",
+	  },
+
+	 
+	}
  ```
 
 8. Install and setup babel
@@ -65,14 +65,65 @@
  ```
  added to webpack.config.js
  ```
-	module: {
-	    loaders: [{
-	        include: DEV,
-	        loader: "babel",
-	    }]
-	  }
+	 module: {
+	  loaders: [
+		    {
+		      test: /\.js$/,
+		      exclude: /node_modules/,
+		      loaders: ["babel"],
+		    },
+		    
+		  ],
+		},
+ ```
+9. Install and setup file loader
+ ```
+	npm install file-loader --save-dev
+ ```
+
+ added to webpack.config.js 
+
+ inside the entry
+ ```
+	 html: "./index.html"
+	
+ ```
+
+ inside the loaders
+ ```
+	 {
+		  test: /\.html$/,
+		  loader: "file?name=[name].[ext]",
+	},
+ ```
+10. Install webpack server
+ ```
+	npm install webpack-dev-server --save-dev
+ ```
+11. Install and setup hot loader replacement
+ ```
+	npm install react-hot-loader --save-dev
+ ```
+ added to webpack.config.js
+ ```
+	 module: {
+	  loaders: [
+		    {
+		      test: /\.js$/,
+		      exclude: /node_modules/,
+		      loaders: ["react-hot", "babel"],
+		    },
+		    
+		  ],
+		},
+ ```
+ create a start command inside the script properties in package.json
+ ```
+	 "scripts": {
+	  "start": "webpack-dev-server --hot --inline"
+	 },
  ```
 9. Compile to test app
  ```
-	./node_modules/.bin/webpack
+	npm start
  ```
